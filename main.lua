@@ -1,6 +1,3 @@
---[[
-	medals art by: https://www.vecteezy.com/members/tianzart
-]]
 WW = 1280
 WH = 720
 VW = 512
@@ -46,9 +43,10 @@ function love.load()
 		["pipe"] = love.graphics.newImage("textures/pipe.png"),
 		["bird"] = love.graphics.newImage("textures/bird.png"),
 		["pause"] = love.graphics.newImage("textures/pause.png"),
-		["bronze"] = love.graphics.newImage("textures/bronze.jpg"),
-		["silver"] = love.graphics.newImage("textures/silver.jpg"),
-		["gold"] = love.graphics.newImage("textures/gold.jpg"),
+		['empty'] = love.graphics.newImage('textures/empty.png'),
+		["bronze"] = love.graphics.newImage("textures/bronze.png"),
+		["silver"] = love.graphics.newImage("textures/silver.png"),
+		["gold"] = love.graphics.newImage("textures/gold.png"),
 	}
 
 	sounds = {
