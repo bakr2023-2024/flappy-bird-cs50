@@ -19,6 +19,7 @@ local spawnTimer = 0
 local BACKGROUND_LOOPING_POINT = 413
 local GROUND_LOOPING_POINT = 514
 local prevY = -PIPE_HEIGHT + math.random(80) + 20
+local scrolling = true
 function love.load()
 	love.window.setTitle("Fifty Bird")
 	love.graphics.setDefaultFilter("nearest", "nearest")
@@ -31,20 +32,25 @@ function love.load()
 	push:setupScreen(VW, VH, WW, WH)
 end
 function love.update(dt)
-	backgroundScroll = (backgroundScroll + BACKGROUND_SCROLL_SPEED * dt) % BACKGROUND_LOOPING_POINT
-	groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt) % GROUND_LOOPING_POINT
-	spawnTimer = spawnTimer + dt
-	if spawnTimer > 2 then
-		local y = math.max(math.min(prevY + math.random(-20, 20), VH - GAP_HEIGHT - PIPE_HEIGHT), -PIPE_HEIGHT + 10)
-		prevY = y
-		table.insert(pipePairs, PipePair(y))
-		spawnTimer = 0
-	end
-	bird:update(dt)
-	for i = #pipePairs, 1, -1 do
-		pipePairs[i]:update(dt)
-		if pipePairs[i].remove then
-			table.remove(pipePairs, i)
+	if scrolling then
+		backgroundScroll = (backgroundScroll + BACKGROUND_SCROLL_SPEED * dt) % BACKGROUND_LOOPING_POINT
+		groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt) % GROUND_LOOPING_POINT
+		spawnTimer = spawnTimer + dt
+		if spawnTimer > 2 then
+			local y = math.max(math.min(prevY + math.random(-20, 20), VH - GAP_HEIGHT - PIPE_HEIGHT), -PIPE_HEIGHT + 10)
+			prevY = y
+			table.insert(pipePairs, PipePair(y))
+			spawnTimer = 0
+		end
+		bird:update(dt)
+		for i = #pipePairs, 1, -1 do
+			pipePairs[i]:update(dt)
+			if bird:collides(pipePairs[i].upper) or bird:collides(pipePairs[i].lower) then
+				scrolling = false
+			end
+			if pipePairs[i].remove then
+				table.remove(pipePairs, i)
+			end
 		end
 	end
 	love.keyboard.keysPressed = {}

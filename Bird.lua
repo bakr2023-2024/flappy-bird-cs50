@@ -15,6 +15,14 @@ function Bird:update(dt)
 	end
 	self.y = self.y + self.dy * dt
 end
+function Bird:collides(pipe)
+	return not (
+		(self.x + 2) + (self.width - 4) <= pipe.x
+		or (self.y + 2) + (self.height - 4) <= pipe.y
+		or pipe.x + PIPE_WIDTH <= (self.x + 2)
+		or pipe.y + PIPE_HEIGHT <= (self.y + 2)
+	)
+end
 function Bird:render()
 	love.graphics.draw(self.image, self.x, self.y)
 end
