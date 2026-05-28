@@ -1,6 +1,8 @@
 PlayState = Class({ __includes = BaseState })
 local GAP_HEIGHT = 110
 function PlayState:init()
+    -- slightly random spawn rate of pipe pair
+	self.spawnRate = 2 + (math.random(2) == 1 and 0.25 or -0.5)
 	self.bird = Bird()
 	self.pipePairs = {}
 	self.spawnTimer = 0
@@ -9,13 +11,15 @@ function PlayState:init()
 end
 function PlayState:update(dt)
 	self.spawnTimer = self.spawnTimer + dt
-	if self.spawnTimer > 2 then
+	if self.spawnTimer > self.spawnRate then
 		-- random vertical gap every pipe pair
-		local gap = GAP_HEIGHT + math.random(-30, 30)
+		local gap = GAP_HEIGHT + math.random(-20, 20)
 		local y = math.max(math.min(self.prevY + math.random(-20, 20), VH - gap - PIPE_HEIGHT), -PIPE_HEIGHT + 10)
 		self.prevY = y
 		table.insert(self.pipePairs, PipePair(y, gap))
 		self.spawnTimer = 0
+        -- new value for spawn rate
+		self.spawnRate = 2 + (math.random(2) == 1 and 0.25 or -0.5)
 	end
 	self.bird:update(dt)
 	if self.bird.y > VH - 15 then
