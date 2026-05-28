@@ -1,5 +1,4 @@
 Pipe = Class({})
-local PIPE_IMAGE = love.graphics.newImage("textures/pipe.png")
 PIPE_SPEED = 60
 PIPE_HEIGHT = 288
 PIPE_WIDTH = 70
@@ -10,5 +9,12 @@ function Pipe:init(isUpper, y)
 end
 
 function Pipe:render()
-	love.graphics.draw(PIPE_IMAGE, self.x, self.scaleY == -1 and self.y + PIPE_HEIGHT or self.y, 0, 1, self.scaleY)
+	love.graphics.draw(
+	textures["pipe"],
+		self.x,
+		self.scaleY == -1 and self.y + PIPE_HEIGHT or self.y,
+		0,
+		1,
+		self.scaleY
+	)
 end

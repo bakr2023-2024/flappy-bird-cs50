@@ -15,6 +15,7 @@ function PlayState:update(dt)
 		gsm.isPaused = not gsm.isPaused
 		-- pause/resume music based on isPaused
 		if gsm.isPaused then
+			sounds["pause"]:play()
 			sounds["music"]:pause()
 		else
 			sounds["music"]:play()
@@ -67,8 +68,7 @@ function PlayState:render()
 		love.graphics.setColor(0, 0, 0, 0.5)
 		love.graphics.rectangle("fill", 0, 0, VW, VH)
 		love.graphics.setColor(1, 1, 1, 1)
-		love.graphics.setFont(flappyFont)
-		love.graphics.printf("Paused", 0, VH / 2 - 14, VW, "center")
+		love.graphics.draw(textures["pause"], HVW - 64, HVH - 64)
 	end
 end
 function PlayState:enter() end

@@ -40,17 +40,26 @@ function love.load()
 	hugeFont = love.graphics.newFont("fonts/flappy.ttf", 56)
 	love.graphics.setFont(flappyFont)
 
+	textures = {
+		["background"] = love.graphics.newImage("textures/background.png"),
+		["ground"] = love.graphics.newImage("textures/ground.png"),
+		["pipe"] = love.graphics.newImage("textures/pipe.png"),
+		["bird"] = love.graphics.newImage("textures/bird.png"),
+		["pause"] = love.graphics.newImage("textures/pause.png"),
+		["bronze"] = love.graphics.newImage("textures/bronze.jpg"),
+		["silver"] = love.graphics.newImage("textures/silver.jpg"),
+		["gold"] = love.graphics.newImage("textures/gold.jpg"),
+	}
+
 	sounds = {
 		["explosion"] = love.audio.newSource("sounds/explosion.wav", "static"),
 		["hurt"] = love.audio.newSource("sounds/hurt.wav", "static"),
 		["jump"] = love.audio.newSource("sounds/jump.wav", "static"),
 		["score"] = love.audio.newSource("sounds/score.wav", "static"),
+		["pause"] = love.audio.newSource("sounds/pause.wav", "static"),
 		["music"] = love.audio.newSource("sounds/marios_way.mp3", "static"),
 	}
 	sounds["music"]:setLooping(true)
-
-	background = love.graphics.newImage("textures/background.png")
-	ground = love.graphics.newImage("textures/ground.png")
 
 	gsm = StateMachine({
 		["title"] = function()
@@ -99,8 +108,8 @@ function love.keyboard.wasPressed(key)
 end
 function love.draw()
 	push:start()
-	love.graphics.draw(background, -backgroundScroll, 0)
-	love.graphics.draw(ground, -groundScroll, VH - 16)
+	love.graphics.draw(textures["background"], -backgroundScroll, 0)
+	love.graphics.draw(textures["ground"], -groundScroll, VH - 16)
 	gsm:render()
 	push:finish()
 end
