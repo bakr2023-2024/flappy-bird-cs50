@@ -1,8 +1,8 @@
 StateMachine = Class({})
 
-function StateMachine:init(states)
+function StateMachine:init(states,initialState)
 	self.states = states
-	self.current = states["title"]()
+	self.current = states[initialState]()
 end
 
 function StateMachine:change(state, params)

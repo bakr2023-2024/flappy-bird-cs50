@@ -16,6 +16,7 @@ require("StateMachine")
 require("states.BaseState")
 require("states.PlayState")
 require("states.TitleState")
+require("states.ScoreState")
 
 local backgroundScroll = 0
 local groundScroll = 0
@@ -45,7 +46,10 @@ function love.load()
 		["play"] = function()
 			return PlayState()
 		end,
-	})
+		["score"] = function()
+			return ScoreState()
+		end,
+	}, "title")
 	love.keyboard.keysPressed = {}
 
 	love.window.setMode(WW, WH, { resizable = false, vsync = true, fullscreen = false })

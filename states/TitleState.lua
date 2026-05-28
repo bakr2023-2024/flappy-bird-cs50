@@ -1,5 +1,5 @@
 TitleState = Class({ __includes = BaseState })
-function TitleState:update()
+function TitleState:update(dt)
 	if love.keyboard.wasPressed("enter") or love.keyboard.wasPressed("return") then
 		gsm:change("play")
 	end
