@@ -3,6 +3,8 @@ StateMachine = Class({})
 function StateMachine:init(states,initialState)
 	self.states = states
 	self.current = states[initialState]()
+	-- boolean to check if game is paused
+	self.isPaused = false
 end
 
 function StateMachine:change(state, params)

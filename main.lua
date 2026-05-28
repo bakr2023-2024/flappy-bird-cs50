@@ -73,8 +73,11 @@ function love.load()
 	sounds["music"]:play()
 end
 function love.update(dt)
-	backgroundScroll = (backgroundScroll + BACKGROUND_SCROLL_SPEED * dt) % BACKGROUND_LOOPING_POINT
-	groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt) % GROUND_LOOPING_POINT
+	-- stop scrolling when paused
+	if not gsm.isPaused then
+		backgroundScroll = (backgroundScroll + BACKGROUND_SCROLL_SPEED * dt) % BACKGROUND_LOOPING_POINT
+		groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt) % GROUND_LOOPING_POINT
+	end
 	gsm:update(dt)
 	love.keyboard.keysPressed = {}
 	love.mouse.buttonsPressed = {}
