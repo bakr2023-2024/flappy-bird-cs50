@@ -38,6 +38,8 @@ function PlayState:render()
 	for i, pair in ipairs(self.pipePairs) do
 		pair:render()
 	end
+	love.graphics.setFont(flappyFont)
+	love.graphics.print("Score: " .. tostring(self.score), 8, 8)
 end
 function PlayState:enter() end
 function PlayState:exit() end
