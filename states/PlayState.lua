@@ -23,9 +23,12 @@ function PlayState:update(dt)
 		if not self.pipePairs[i].scored and self.bird.x > self.pipePairs[i].upper.x + PIPE_WIDTH then
 			self.score = self.score + 1
 			self.pipePairs[i].scored = true
+			sounds["score"]:play()
 		end
 		self.pipePairs[i]:update(dt)
 		if self.bird:collides(self.pipePairs[i].upper) or self.bird:collides(self.pipePairs[i].lower) then
+			sounds["explosion"]:play()
+			sounds["hurt"]:play()
 			gsm:change("score", { score = self.score })
 		end
 		if self.pipePairs[i].remove then
