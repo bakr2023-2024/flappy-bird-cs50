@@ -15,6 +15,9 @@ function PlayState:update(dt)
 		self.spawnTimer = 0
 	end
 	self.bird:update(dt)
+	if self.bird.y > VH - 15 then
+		gsm:change("title")
+	end
 	for i = #self.pipePairs, 1, -1 do
 		self.pipePairs[i]:update(dt)
 		if self.bird:collides(self.pipePairs[i].upper) or self.bird:collides(self.pipePairs[i].lower) then

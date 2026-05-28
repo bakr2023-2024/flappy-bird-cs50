@@ -24,7 +24,6 @@ local BACKGROUND_SCROLL_SPEED = 30
 local GROUND_SCROLL_SPEED = 60
 local BACKGROUND_LOOPING_POINT = 413
 local GROUND_LOOPING_POINT = 514
-local scrolling = true
 function love.load()
 	love.window.setTitle("Fifty Bird")
 	love.graphics.setDefaultFilter("nearest", "nearest")
