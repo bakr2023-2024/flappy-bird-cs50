@@ -6,17 +6,16 @@ end
 function ScoreState:enter(params)
 	self.score = params.score
 end
-function ScoreState:update(dt)
+function ScoreState:update()
 	if love.keyboard.wasPressed("enter") or love.keyboard.wasPressed("return") then
 		gsm:change("title")
 	end
 end
 function ScoreState:render()
-	love.graphics.printf(
-		"Game Over\nYour Score: " .. tostring(self.score) .. "\nPress Enter to restart",
-		0,
-		10,
-		VW,
-		"center"
-	)
+	love.graphics.setFont(flappyFont)
+	love.graphics.printf("Fifty Bird", 0, 64, VW, "center")
+
+	love.graphics.setFont(mediumFont)
+	love.graphics.printf("Your Score: " .. tostring(self.score), 0, 100, VW, "center")
+	love.graphics.printf("Press Enter to restart", 0, 118, VW, "center")
 end

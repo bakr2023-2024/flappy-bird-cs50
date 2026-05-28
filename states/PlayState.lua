@@ -17,7 +17,7 @@ function PlayState:update(dt)
 	end
 	self.bird:update(dt)
 	if self.bird.y > VH - 15 then
-		gsm:change("title")
+		gsm:change("score", { score = self.score })
 	end
 	for i = #self.pipePairs, 1, -1 do
 		if not self.pipePairs[i].scored and self.bird.x > self.pipePairs[i].upper.x + PIPE_WIDTH then
