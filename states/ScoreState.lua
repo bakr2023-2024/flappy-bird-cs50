@@ -8,7 +8,7 @@ function ScoreState:enter(params)
 end
 function ScoreState:update()
 	if love.keyboard.wasPressed("enter") or love.keyboard.wasPressed("return") then
-		gsm:change("title")
+		gsm:change("play")
 	end
 end
 function ScoreState:render()
