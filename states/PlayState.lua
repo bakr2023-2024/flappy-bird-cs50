@@ -1,4 +1,5 @@
 PlayState = Class({ __includes = BaseState })
+local GAP_HEIGHT = 110
 function PlayState:init()
 	self.bird = Bird()
 	self.pipePairs = {}
@@ -9,10 +10,11 @@ end
 function PlayState:update(dt)
 	self.spawnTimer = self.spawnTimer + dt
 	if self.spawnTimer > 2 then
-		local y =
-			math.max(math.min(self.prevY + math.random(-20, 20), VH - GAP_HEIGHT - PIPE_HEIGHT), -PIPE_HEIGHT + 10)
+		-- random vertical gap every pipe pair
+		local gap = GAP_HEIGHT + math.random(-30, 30)
+		local y = math.max(math.min(self.prevY + math.random(-20, 20), VH - gap - PIPE_HEIGHT), -PIPE_HEIGHT + 10)
 		self.prevY = y
-		table.insert(self.pipePairs, PipePair(y))
+		table.insert(self.pipePairs, PipePair(y, gap))
 		self.spawnTimer = 0
 	end
 	self.bird:update(dt)

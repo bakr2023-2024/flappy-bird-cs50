@@ -1,11 +1,10 @@
-GAP_HEIGHT = 110
 PipePair = Class({})
 
-function PipePair:init(y)
+function PipePair:init(y,gap)
 	self.x = VW + 32
 	self.y = y
 	self.upper = Pipe(true, y)
-	self.lower = Pipe(false, y + GAP_HEIGHT + PIPE_HEIGHT)
+	self.lower = Pipe(false, y + gap + PIPE_HEIGHT)
 	self.remove = false
     self.scored = false
 end

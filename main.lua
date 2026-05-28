@@ -1,3 +1,6 @@
+--[[
+	medals art by: https://www.vecteezy.com/members/tianzart
+]]
 WW = 1280
 WH = 720
 VW = 512
@@ -64,7 +67,7 @@ function love.load()
 		end,
 	}, "title")
 	love.keyboard.keysPressed = {}
-
+	love.mouse.buttonsPressed = {}
 	love.window.setMode(WW, WH, { resizable = false, vsync = true, fullscreen = false })
 	push:setupScreen(VW, VH, WW, WH)
 	sounds["music"]:play()
@@ -74,6 +77,7 @@ function love.update(dt)
 	groundScroll = (groundScroll + GROUND_SCROLL_SPEED * dt) % GROUND_LOOPING_POINT
 	gsm:update(dt)
 	love.keyboard.keysPressed = {}
+	love.mouse.buttonsPressed = {}
 end
 function love.keypressed(key)
 	love.keyboard.keysPressed[key] = true
@@ -81,8 +85,14 @@ function love.keypressed(key)
 		love.event.quit()
 	end
 end
+function love.mousepressed(x, y, button)
+	love.mouse.buttonsPressed[button] = true
+end
+function love.mouse.wasPressed(button)
+	return love.mouse.buttonsPressed[button]
+end
 function love.keyboard.wasPressed(key)
-	return love.keyboard.keysPressed[key] or false
+	return love.keyboard.keysPressed[key]
 end
 function love.draw()
 	push:start()
