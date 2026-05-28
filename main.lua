@@ -14,6 +14,7 @@ require("PipePair")
 
 require("StateMachine")
 require("states.BaseState")
+require("states.CountDownState")
 require("states.PlayState")
 require("states.TitleState")
 require("states.ScoreState")
@@ -41,14 +42,17 @@ function love.load()
 
 	gsm = StateMachine({
 		["title"] = function()
-			return TitleState()
+		return TitleState()
 		end,
 		["play"] = function()
-			return PlayState()
+		return PlayState()
 		end,
 		["score"] = function()
-			return ScoreState()
+		return ScoreState()
 		end,
+		['countdown'] = function()
+		return Countdown()
+		end
 	}, "title")
 	love.keyboard.keysPressed = {}
 

@@ -1,7 +1,7 @@
 TitleState = Class({ __includes = BaseState })
 function TitleState:update()
 	if love.keyboard.wasPressed("enter") or love.keyboard.wasPressed("return") then
-		gsm:change("play")
+		gsm:change("countdown")
 	end
 end
 function TitleState:render()
